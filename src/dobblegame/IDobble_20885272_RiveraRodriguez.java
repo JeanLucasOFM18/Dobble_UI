@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IDobble_20885272_RiveraRodriguez {
 
-    void generarLista();
+    void generarLista(String elementos);
 
     boolean comprobarDatos();
 

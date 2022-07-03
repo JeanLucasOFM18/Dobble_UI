@@ -110,6 +110,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Crea una lista de elementos a medida que el usuario los va ingresando (List<String>)
      */
+    /*
     public void generarLista(){
 
         System.out.println("Recuerde no ingresar elementos repetidos");
@@ -148,8 +149,50 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
 
         Collections.shuffle(getLis_elementos());
         System.out.println("Su lista de elementos aleatorizada es: " + getLis_elementos());
-    }
+    }*/
 
+    public void generarLista(String elementos){
+
+        String[] elementosUsuario = elementos.split(",");
+        int largoLista = elementosUsuario.length;
+        List<String> lis_elementos = getLis_elementos();
+
+        int i = 0;
+        int j = 0;
+        int aux = 0;
+        while(i < largoLista){
+            String elemento = elementosUsuario[i];
+            int largo = getLis_elementos().size();
+            while(j < largo){
+                String elemento2 = getLis_elementos().get(j);
+                if(elemento.equals(elemento2)){
+                    aux = 1;
+                    j = largo;
+                }
+                else{
+                    j = j + 1;
+                }
+            }
+            if(aux == 1){
+                i = i + 1;
+                j = 0;
+                aux = 0;
+            }
+            else{
+                lis_elementos.add(elemento);
+                setLis_elementos(lis_elementos);
+                i = i + 1;
+                j = 0;
+            }
+        }
+
+        Collections.shuffle(getLis_elementos());
+        System.out.println("Su lista de elementos aleatorizada es: " + getLis_elementos());
+
+        //String part1 = parts[0]; // 123
+        //String part2 = parts[1]; // 654321
+
+    }
     /**
      * Comprueba si se cuenta con la cantidad necesaria de cartas para iniciar el juego
      * @return Boolean Dependiendo si se tiene la cantidad de cartas necesarias o no

@@ -87,7 +87,7 @@ public class Menu_20885272_RiveraRodriguez {
                             cantElementos = in.nextInt();
                             getDatosMazo().setCantElementos(cantElementos);
                             // Se pide al usuario que ingrese los elementos y se crea una lista
-                            getDatosMazo().generarLista();
+                            //BORRAR getDatosMazo().generarLista();
                             // Se pide al usuario ingresar la cantidad de elementos que quiere por carta
                             System.out.println("Ingrese cantidad de elementos por carta: ");
                             numC = in.nextInt();
