@@ -189,10 +189,9 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
         Collections.shuffle(getLis_elementos());
         System.out.println("Su lista de elementos aleatorizada es: " + getLis_elementos());
 
-        //String part1 = parts[0]; // 123
-        //String part2 = parts[1]; // 654321
 
     }
+
     /**
      * Comprueba si se cuenta con la cantidad necesaria de cartas para iniciar el juego
      * @return Boolean Dependiendo si se tiene la cantidad de cartas necesarias o no
@@ -212,7 +211,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Señala la cantidad de elementos que hacen falta para crear el mazo que solicita el usuario
      */
-    public void senalarError(){
+    public int senalarError(){
 
         int resultado = calculo(getNumC());
         int largo = getLis_elementos().size();
@@ -220,11 +219,18 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
         int faltantes = resultado - largo;
 
         if(resultado > largo){
+            return faltantes;
+        }
+
+        return 0;
+
+        /*
+        if(resultado > largo){
             System.out.println("Para crear el set de cartas correcto se necesita agregar " + faltantes + " elementos");
         }
         else{
             System.out.println("No se puede generar esta cantidad de cartas");
-        }
+        }*/
 
     }
 

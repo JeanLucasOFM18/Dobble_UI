@@ -13,7 +13,7 @@ public interface IDobble_20885272_RiveraRodriguez {
 
     boolean comprobarDatos();
 
-    void senalarError();
+    int senalarError();
 
     void generarMazo(int opcion);
 

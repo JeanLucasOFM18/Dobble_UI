@@ -11,6 +11,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
 
     private Dobble_20885272_RiveraRodriguez datosMazo;
     private DobbleGame_20885272_RiveraRodriguez datosJuego;
+    int habilitador = 0;
     private JPanel panelPrincipal;
     private JPanel panelCrearJuego;
     private JButton botonAccion;
@@ -20,6 +21,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
     private JButton botonAccion5;
     private JButton botonAccion6;
     private JButton botonAccion7;
+    private JButton botonAccion8;
     private JLabel labelQuestion;
     private JLabel labelQuestion1;
     private JLabel labelQuestion2;
@@ -30,6 +32,9 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
     private JTextField fieldElements;
     private JComboBox boxModoJuego;
     private JLabel labelQuestion4;
+    private JLabel labelQuestion5;
+    private JButton botonAccion9;
+    private JTextField fieldNumP;
 
     public Dobble_20885272_RiveraRodriguez getDatosMazo() {
         return datosMazo;
@@ -109,6 +114,11 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
         labelQuestion4 = new JLabel("Escoja el modo de juego:");
         String[] modosJuego = {"StackMode vs Amigos", "StackMode vs CPU"};
         boxModoJuego = new JComboBox(modosJuego);
+        botonAccion8 = new JButton("OK");
+        labelQuestion5 = new JLabel("Ingrese cantidad de jugadores en la partida:");
+        fieldNumP = new JTextField(5);
+        botonAccion9 = new JButton("OK");
+
         //panelCrearJuego.add(labelQuestion);
         //panelCrearJuego.add(fieldCantElements);
         panelCrearJuego.add(labelQuestion3);
@@ -119,9 +129,21 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
         panelCrearJuego.add(fieldMaxC);
         panelCrearJuego.add(botonAccion7);
         panelCrearJuego.add(labelQuestion4);
+        labelQuestion4.setVisible(false);
         panelCrearJuego.add(boxModoJuego);
+        boxModoJuego.setVisible(false);
+        panelCrearJuego.add(botonAccion8);
+        botonAccion8.setVisible(false);
+        panelCrearJuego.add(labelQuestion5);
+        labelQuestion5.setVisible(false);
+        panelCrearJuego.add(fieldNumP);
+        fieldNumP.setVisible(false);
+        panelCrearJuego.add(botonAccion9);
+        botonAccion9.setVisible(false);
 
         botonAccion7.addActionListener(this);
+        botonAccion8.addActionListener(this);
+        botonAccion9.addActionListener(this);
 
     }
 
@@ -129,8 +151,14 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent evento) {
         try {
             if (evento.getSource() == botonAccion) {
-                panelPrincipal.setVisible(false);
-                panelCrearJuego.setVisible(true);
+                if(habilitador == 0){
+                    panelPrincipal.setVisible(false);
+                    panelCrearJuego.setVisible(true);
+                }
+                else {
+                    String message = "Ya se ha creado un juego";
+                    JOptionPane.showMessageDialog(this, message);
+                }
             } else if (evento.getSource() == botonAccion2) {
                 String message = "Hola, este es el registro";
                 JOptionPane.showMessageDialog(this, message);
@@ -156,16 +184,71 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                 int maxC = Integer.parseInt(fieldMaxC.getText());
                 getDatosMazo().setMaxC(maxC);
                 if (datosMazo.comprobarDatos()){
-                    String message = "Puede hacer el mazo";
-                    //botonAccion7.setVisible(false);
-                    JOptionPane.showMessageDialog(this, message);
+                    labelQuestion1.setVisible(false);
+                    labelQuestion2.setVisible(false);
+                    labelQuestion3.setVisible(false);
+                    fieldElements.setVisible(false);
+                    fieldMaxC.setVisible(false);
+                    fieldNumC.setVisible(false);
+                    botonAccion7.setVisible(false);
+                    labelQuestion4.setVisible(true);
+                    boxModoJuego.setVisible(true);
+                    botonAccion8.setVisible(true);
                 }
                 else{
-                    String message = "No puede hacer el mazo";
+                    int error = getDatosMazo().senalarError();
+                    String message;
+                    if(error != 0){
+                        message = "Para generar un mazo se debe agregar " + error + " elementos";
+                    }
+                    else{
+                        message = "No se puede generar esa cantidad de cartas";
+                    }
                     JOptionPane.showMessageDialog(this, message);
+                    getDatosMazo().setNumC(0);
+                    getDatosMazo().setMaxC(0);
+                    getDatosMazo().getLis_elementos().removeAll(getDatosMazo().getLis_elementos());
                 }
-                //getDatosMazo().setCantElementos(cantElementos);
-                //System.out.println(getDatosMazo().getCantElementos());
+            } else if (evento.getSource() == botonAccion8){
+                labelQuestion4.setVisible(false);
+                boxModoJuego.setVisible(false);
+                botonAccion8.setVisible(false);
+                String eleccion = boxModoJuego.getSelectedItem().toString();
+                int modoJuego;
+                if(eleccion.equals("StackMode vs Amigos")){
+                    labelQuestion5.setVisible(true);
+                    fieldNumP.setVisible(true);
+                    botonAccion9.setVisible(true);
+                    modoJuego = 1;
+                }
+                else{
+                    modoJuego = 2;
+                }
+                getDatosJuego().setGameMode(modoJuego);
+            } else if(evento.getSource() == botonAccion9){
+                if(getDatosJuego().getGameMode() == 1){
+                    int numP = Integer.parseInt(fieldNumP.getText());
+                    if(numP > 1){
+                        getDatosJuego().setNumP(numP);
+                        labelQuestion5.setVisible(false);
+                        fieldNumP.setVisible(false);
+                        botonAccion9.setVisible(false);
+                        panelCrearJuego.setVisible(false);
+                        panelPrincipal.setVisible(true);
+                        habilitador = 1;
+                        getDatosMazo().generarMazo(1);
+                        getDatosJuego().setMazo(getDatosMazo());
+                        String message = "El juego se ha creado exitosamente";
+                        JOptionPane.showMessageDialog(this, message);
+                    }
+                    else{
+                        String message = "No puede crearse un juego de " + numP + " persona en este modo";
+                        JOptionPane.showMessageDialog(this, message);
+                    }
+                }
+                if(getDatosJuego().getGameMode() == 2){
+                    // SE REQUIRE PÁGINA DE REGISTER
+                }
             }
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, "Error!");
