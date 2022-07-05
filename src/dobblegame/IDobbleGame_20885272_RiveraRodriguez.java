@@ -7,7 +7,7 @@ package dobblegame;
  */
 public interface IDobbleGame_20885272_RiveraRodriguez {
 
-    void register(String nombre);
+    boolean register(String nombre);
 
     int comprobarDatos();
 

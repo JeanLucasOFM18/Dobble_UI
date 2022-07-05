@@ -11,7 +11,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
 
     private Dobble_20885272_RiveraRodriguez datosMazo;
     private DobbleGame_20885272_RiveraRodriguez datosJuego;
-    int habilitador = 0;
+    private int habilitador = 0;
     private JPanel panelPrincipal;
     private JPanel panelCrearJuego;
     private JButton botonAccion;
@@ -35,6 +35,30 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
     private JLabel labelQuestion5;
     private JButton botonAccion9;
     private JTextField fieldNumP;
+    private JPanel panelRegistro;
+    private JTextField fieldNameUser;
+    private JLabel labelQuestion6;
+    private JButton botonAccion10;
+    private JPanel panelDatos;
+    private JButton botonAccion11;
+    private JButton botonAccion12;
+    private JButton botonAccion13;
+    private JPanel panelDatosMazo;
+    private JPanel panelDatosJuego;
+    private JButton botonAccion14;
+    private JButton botonAccion15;
+    private JButton botonAccion16;
+    private JButton botonAccion17;
+    private JButton botonAccion18;
+    private JButton botonAccion19;
+    private JButton botonAccion20;
+    private JButton botonAccion21;
+    private JButton botonAccion22;
+    private JButton botonAccion23;
+    private JButton botonAccion24;
+    private JButton botonAccion25;
+
+
 
     public Dobble_20885272_RiveraRodriguez getDatosMazo() {
         return datosMazo;
@@ -59,9 +83,21 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
         setLayout(new BorderLayout());
         panelMenuPrincipal();
         panelOpcion1();
+        panelOpcion2();
+        panelOpcion3();
+        panelOpcionMazo();
+        panelOpcionJuego();
         add(panelPrincipal);
         add(panelCrearJuego);
+        add(panelRegistro);
+        add(panelDatos);
+        add(panelDatosMazo);
+        add(panelDatosJuego);
         panelCrearJuego.setVisible(false);
+        panelRegistro.setVisible(false);
+        panelDatos.setVisible(false);
+        panelDatosMazo.setVisible(false);
+        panelDatosJuego.setVisible(false);
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.datosMazo = new Dobble_20885272_RiveraRodriguez();
@@ -147,6 +183,97 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
 
     }
 
+    private void panelOpcion2(){
+
+        panelRegistro = new JPanel(new FlowLayout());
+        panelRegistro.setBounds(0, 0, 220, 280);
+        panelRegistro.setBackground(Color.YELLOW);
+
+        labelQuestion6 = new JLabel("Ingrese el nombre del jugador:");
+        fieldNameUser = new JTextField(10);
+        botonAccion10 = new JButton("AGREGAR");
+
+        panelRegistro.add(labelQuestion6);
+        panelRegistro.add(fieldNameUser);
+        panelRegistro.add(botonAccion10);
+
+        botonAccion10.addActionListener(this);
+
+    }
+
+    private void panelOpcion3(){
+
+        panelDatos = new JPanel(new FlowLayout());
+        panelDatos.setBounds(0, 0, 220, 280);
+        panelDatos.setBackground(Color.YELLOW);
+
+        botonAccion11 = new JButton("MAZO");
+        botonAccion12 = new JButton("JUEGO");
+        botonAccion13 = new JButton("VOLVER ATRAS");
+
+        panelDatos.add(botonAccion11);
+        panelDatos.add(botonAccion12);
+        panelDatos.add(botonAccion13);
+
+        botonAccion11.addActionListener(this);
+        botonAccion12.addActionListener(this);
+        botonAccion13.addActionListener(this);
+
+    }
+
+    private void panelOpcionMazo(){
+
+        panelDatosMazo = new JPanel(new FlowLayout());
+        panelDatosMazo.setBounds(0, 0, 220, 280);
+        panelDatosMazo.setBackground(Color.YELLOW);
+
+        botonAccion14 = new JButton("MOSTRAR MAZO");
+        botonAccion15 = new JButton("VERIFICAR MAZO");
+        botonAccion16 = new JButton("CANTIDAD DE CARTAS");
+        botonAccion17 = new JButton("OBTENER CARTA");
+        botonAccion18 = new JButton("CANT. NECESARIA CARTAS");
+        botonAccion19 = new JButton("CANT. NECESARIA ELEMENTOS");
+        botonAccion20 = new JButton("CARTAS FALTANTES");
+        botonAccion21 = new JButton("MAZO A STRING");
+        botonAccion22 = new JButton("VOLVER ATRAS");
+
+        panelDatosMazo.add(botonAccion14);
+        panelDatosMazo.add(botonAccion15);
+        panelDatosMazo.add(botonAccion16);
+        panelDatosMazo.add(botonAccion17);
+        panelDatosMazo.add(botonAccion18);
+        panelDatosMazo.add(botonAccion19);
+        panelDatosMazo.add(botonAccion20);
+        panelDatosMazo.add(botonAccion21);
+        panelDatosMazo.add(botonAccion22);
+
+        botonAccion14.addActionListener(this);
+        botonAccion15.addActionListener(this);
+        botonAccion16.addActionListener(this);
+        botonAccion17.addActionListener(this);
+        botonAccion18.addActionListener(this);
+        botonAccion19.addActionListener(this);
+        botonAccion20.addActionListener(this);
+        botonAccion21.addActionListener(this);
+        botonAccion22.addActionListener(this);
+
+    }
+
+    private void panelOpcionJuego(){
+
+        panelDatosJuego = new JPanel(new FlowLayout());
+        panelDatosJuego.setBounds(0, 0, 220, 280);
+        panelDatosJuego.setBackground(Color.YELLOW);
+
+        botonAccion23 = new JButton("LISTA DE JUGADORES");
+        botonAccion24 = new JButton("ORDEN DE LOS TURNOS");
+        botonAccion25 = new JButton("VOLVER ATRAS");
+
+        panelDatosJuego.add(botonAccion23);
+        panelDatosJuego.add(botonAccion24);
+        panelDatosJuego.add(botonAccion25);
+    }
+
     @Override
     public void actionPerformed(ActionEvent evento) {
         try {
@@ -160,20 +287,49 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(this, message);
                 }
             } else if (evento.getSource() == botonAccion2) {
-                String message = "Hola, este es el registro";
-                JOptionPane.showMessageDialog(this, message);
+                String message;
+                if(habilitador == 0){
+                    message = "Debe crear el juego para acceder a esta funcion";
+                    JOptionPane.showMessageDialog(this, message);
+                }
+                else if(getDatosJuego().getNumP() == getDatosJuego().getJugadores().size()){
+                    message = "Ya se ha registrado la cantidad máxima de jugadores";
+                    JOptionPane.showMessageDialog(this, message);
+                }
+                else {
+                    panelPrincipal.setVisible(false);
+                    panelRegistro.setVisible(true);
+                }
             } else if (evento.getSource() == botonAccion3) {
-                String message = "Hola, estos son los datos del juego";
-                JOptionPane.showMessageDialog(this, message);
+                String message;
+                if(habilitador == 0){
+                    message = "Debe crear el juego para acceder a esta funcion";
+                    JOptionPane.showMessageDialog(this, message);
+                }
+                else{
+                    panelPrincipal.setVisible(false);
+                    panelDatos.setVisible(true);
+                }
             } else if (evento.getSource() == botonAccion4) {
-                String message = "Hola, esto es para jugar";
+                String message;
+                if(habilitador == 0){
+                    message = "Debe crear el juego para acceder a esta funcion";
+                }
+                else {
+                    message = "Hola, esto es para jugar";
+                }
                 JOptionPane.showMessageDialog(this, message);
             } else if (evento.getSource() == botonAccion5) {
-                String message = "Hola, esta es funcion tostring";
+                String message;
+                if(habilitador == 0){
+                    message = "Debe crear el juego para acceder a esta funcion";
+                }
+                else {
+                    message = "Hola, esta es funcion tostring";
+                }
                 JOptionPane.showMessageDialog(this, message);
             } else if (evento.getSource() == botonAccion6) {
-                String message = "Hola, esto es para salir";
-                JOptionPane.showMessageDialog(this, message);
+                dispose();
             } else if (evento.getSource() == botonAccion7) {
                 //int cantElementos = Integer.parseInt(fieldCantElements.getText());
                 //getDatosMazo().setCantElementos(cantElementos);
@@ -249,6 +405,53 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                 if(getDatosJuego().getGameMode() == 2){
                     // SE REQUIRE PÁGINA DE REGISTER
                 }
+            } else if (evento.getSource() == botonAccion10){
+                String nombre = fieldNameUser.getText();
+                if(getDatosJuego().register(nombre)){
+                    String message = "Se registro correctamente al usuario: " + nombre;
+                    JOptionPane.showMessageDialog(this, message);
+                    fieldNameUser.setText("");
+                    panelRegistro.setVisible(false);
+                    panelPrincipal.setVisible(true);
+                }
+                else {
+                    String message = "Ya existe un usuario con el nombre: " + nombre;
+                    fieldNameUser.setText("");
+                    JOptionPane.showMessageDialog(this, message);
+                }
+            } else if(evento.getSource() == botonAccion11){
+                panelDatos.setVisible(false);
+                panelDatosMazo.setVisible(true);
+            } else if(evento.getSource() == botonAccion12){
+                panelDatos.setVisible(false);
+                panelDatosJuego.setVisible(true);
+            } else if(evento.getSource() == botonAccion13){
+                panelDatos.setVisible(false);
+                panelPrincipal.setVisible(true);
+            } else if(evento.getSource() == botonAccion14){
+
+            } else if(evento.getSource() == botonAccion15){
+
+            } else if(evento.getSource() == botonAccion16){
+
+            } else if(evento.getSource() == botonAccion17){
+
+            } else if(evento.getSource() == botonAccion18){
+
+            } else if(evento.getSource() == botonAccion19){
+
+            } else if(evento.getSource() == botonAccion20){
+
+            } else if(evento.getSource() == botonAccion21){
+
+            } else if(evento.getSource() == botonAccion22){
+
+            } else if(evento.getSource() == botonAccion23){
+
+            } else if(evento.getSource() == botonAccion24){
+
+            } else if(evento.getSource() == botonAccion25){
+
             }
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, "Error!");

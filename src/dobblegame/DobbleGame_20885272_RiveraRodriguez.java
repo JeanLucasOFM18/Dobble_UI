@@ -129,7 +129,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
     /**
      * Registra un nuevo jugador y lo agrega a la lista de jugadores existente
      */
-    public void register(String nombre){
+    public boolean register(String nombre){
 
         int largo = getJugadores().size();
 
@@ -144,6 +144,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
             setJugadores(listaJugadores2);
             System.out.println("Registro exitoso");
             setNumP(2);
+            return true;
         }
         else{
             int k = 0;
@@ -156,6 +157,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
                         System.out.println("Ya existe un jugador con ese nombre");
                         i = largo;
                         j = 1;
+                        return false;
                     }
                     else{
                         i = i + 1;
@@ -167,9 +169,12 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
                     listaJugadores.add(jugador);
                     setJugadores(listaJugadores);
                     System.out.println("Registro exitoso");
+                    return true;
                 }
             }
         }
+
+        return false;
     }
 
     /**
