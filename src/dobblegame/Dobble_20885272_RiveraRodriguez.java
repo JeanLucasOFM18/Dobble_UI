@@ -365,7 +365,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Determina si el set de cartas generado es válido o no para jugar
      */
-    public void dobbleGame(){
+    public boolean dobbleGame(){
 
         int i = 0;
         int largo = getMazo().size();
@@ -374,7 +374,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
         int comparacion = 0;
 
         if(largo != calculo){
-            System.out.println("El set de cartas es invalido");
+            return false;
         }
         else{
             while(i < largo) {
@@ -394,21 +394,22 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
             }
 
             if(comparacion == 0){
-                System.out.println("El set de cartas es valido");
+                return true;
             }
             else{
-                System.out.println("El set de cartas es invalido");
+                return false;
             }
         }
-
     }
 
     /**
      * Obtiene la cantidad de cartas que tiene el mazo generado
      */
-    public void numCards(){
+    public int numCards(){
 
-        System.out.println("La cantidad de cartas en el set es: " + getMazo().size());
+        int cantidad = getMazo().size();
+
+        return cantidad;
     }
 
     /**

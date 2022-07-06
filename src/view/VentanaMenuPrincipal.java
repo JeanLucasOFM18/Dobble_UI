@@ -431,9 +431,19 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
             } else if(evento.getSource() == botonAccion14){
 
             } else if(evento.getSource() == botonAccion15){
+                if(getDatosMazo().dobbleGame()){
+                    String message = "El set de cartas es válido para jugar";
+                    JOptionPane.showMessageDialog(this, message);
+                }
+                else {
+                    String message = "El set de cartas no es válido para jugar";
+                    JOptionPane.showMessageDialog(this, message);
+                }
 
             } else if(evento.getSource() == botonAccion16){
-
+                int cantCartas = getDatosMazo().numCards();
+                String message = "El set contiene " + cantCartas + " cartas";
+                JOptionPane.showMessageDialog(this, message);
             } else if(evento.getSource() == botonAccion17){
 
             } else if(evento.getSource() == botonAccion18){

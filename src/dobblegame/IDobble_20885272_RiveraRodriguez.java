@@ -25,9 +25,9 @@ public interface IDobble_20885272_RiveraRodriguez {
 
     void mostrarMazo();
 
-    void dobbleGame();
+    boolean dobbleGame();
 
-    void numCards();
+    int numCards();
 
     void nthCard();
 
