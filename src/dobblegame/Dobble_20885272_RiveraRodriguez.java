@@ -351,7 +351,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Muestra el mazo generado
      */
-    public void mostrarMazo(){
+    public void mostrarMazo() {
 
         int i = 0;
         System.out.println("El mazo es: ");
@@ -433,20 +433,22 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
      * Obtiene la cantidad necesaria de cartas que se debe tener para poder tener un set válido,
      * todo esto a partir de una carta de muestra
      */
-    public void findTotalCards(){
+    public int findTotalCards(int posicion){
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Que carta quiere usar de muestra?");
-        int posicion = in.nextInt();
+        //Scanner in = new Scanner(System.in);
+        //System.out.println("Que carta quiere usar de muestra?");
+        //int posicion = in.nextInt();
 
         if(posicion > getMaxC() - 1){
-            System.out.println("No existe la carta " + posicion + " en su mazo");
+            return 0;
+            //System.out.println("No existe la carta " + posicion + " en su mazo");
         }
         else{
             List<String> sublista = getMazo().get(posicion).getCarta();
             int largo = sublista.size();
             int total = calculo(largo);
-            System.out.println("La cantidad de cartas necesarias son: " + total);
+            return total;
+            //System.out.println("La cantidad de cartas necesarias son: " + total);
         }
     }
 

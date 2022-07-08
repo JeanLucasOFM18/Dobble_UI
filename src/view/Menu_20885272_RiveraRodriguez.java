@@ -422,7 +422,7 @@ public class Menu_20885272_RiveraRodriguez {
                         break;
                 case 5: // FINDTOTALCARDS
                         // Se obtiene la cantidad total de cartas que se necesitan a partir de una carta muestra
-                        getDatosMazo().findTotalCards();
+                        //getDatosMazo().findTotalCards();
                         break;
                 case 6: // REQUIREDELEMENTS
                         // Se obtiene la cantidad total de elementos que se necesitan a partir de una carta muestra

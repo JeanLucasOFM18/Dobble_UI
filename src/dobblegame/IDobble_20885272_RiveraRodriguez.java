@@ -31,7 +31,7 @@ public interface IDobble_20885272_RiveraRodriguez {
 
     void nthCard();
 
-    void findTotalCards();
+    int findTotalCards(int posicion);
 
     void requiredElements();
 
