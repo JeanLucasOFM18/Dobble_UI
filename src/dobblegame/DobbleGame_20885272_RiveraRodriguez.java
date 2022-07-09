@@ -202,9 +202,9 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
     /**
      * Se muestra la lista de jugadores registrados
      */
-    public void listaJugadores(){
+    public String listaJugadores(int i){
 
-        int i = 0;
+        /*int i = 0;
         int j = 1;
         int largo = getJugadores().size();
 
@@ -218,7 +218,11 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
                 i = i + 1;
                 j = j + 1;
             }
-        }
+        }*/
+
+        String nombre = getJugadores().get(i).getNombre();
+
+        return nombre;
     }
 
     /**

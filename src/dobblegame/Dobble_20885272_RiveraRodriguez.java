@@ -351,14 +351,29 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Muestra el mazo generado
      */
-    public void mostrarMazo() {
+    public List<String> mostrarMazo(int i) {
+
+        /*
+        int i = 0;
+        int j = 1;
+        int largo = getMazo().size();
+        while(i < largo){
+            List<String> sublista = getMazo().get(i).getCarta();
+            System.out.println("Carta " + j + ": " + sublista);
+            i = i + 1;
+            j = j + 1;
+        }
 
         int i = 0;
         System.out.println("El mazo es: ");
         while(i < getMaxC()){
             System.out.println(getMazo().get(i).getCarta());
             i = i + 1;
-        }
+        }*/
+
+        List<String> sublista = getMazo().get(i).getCarta();
+
+        return sublista;
 
     }
 
@@ -415,8 +430,9 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Obtiene la carta ubicada en la posición que indica el usuario, siempre y cuando esta posición exista
      */
-    public void nthCard(){
+    public List<String> nthCard(int posicion){
 
+        /*
         Scanner in = new Scanner(System.in);
         System.out.println("Que carta busca?");
         int posicion = in.nextInt();
@@ -426,7 +442,12 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
         }
         else{
             System.out.println("La carta escogida es: " + getMazo().get(posicion).getCarta());
-        }
+        }*/
+
+        List<String> sublista = getMazo().get(posicion).getCarta();
+
+        return sublista;
+
     }
 
     /**
@@ -476,8 +497,9 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Obtiene las cartas (Card) que hacen falta para poder tener un set válido
      */
-    public void missingCards(){
+    public List<List> missingCards(){
 
+        List<List> faltantes = new ArrayList<>();
         int maxC = calculo(getNumC());
         if(getMazo().size() == maxC){
             System.out.println("El set de cartas esta completo");
@@ -510,12 +532,15 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
                     }
                 }
                 if(comparacion == 0){
+                    faltantes.add(mazoEntero.getMazo().get(i).getCarta());
                     System.out.println(mazoEntero.getMazo().get(i).getCarta());
                 }
                 j = 0;
                 i = i + 1;
             }
         }
+
+        return faltantes;
     }
 
     /**

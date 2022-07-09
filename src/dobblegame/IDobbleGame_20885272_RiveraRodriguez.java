@@ -11,7 +11,7 @@ public interface IDobbleGame_20885272_RiveraRodriguez {
 
     int comprobarDatos();
 
-    void listaJugadores();
+    String listaJugadores(int i);
 
     void turnos();
 

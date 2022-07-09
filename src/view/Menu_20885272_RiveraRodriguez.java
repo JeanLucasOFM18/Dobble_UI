@@ -406,7 +406,7 @@ public class Menu_20885272_RiveraRodriguez {
             int opcion = in.nextInt();
             switch (opcion) {
                 case 1: // MOSTRAR MAZO
-                        getDatosMazo().mostrarMazo();
+                        //getDatosMazo().mostrarMazo();
                         break;
                 case 2: // DOBBLE?
                         // Se verifica la validez del mazo
@@ -418,7 +418,7 @@ public class Menu_20885272_RiveraRodriguez {
                         break;
                 case 4: // NTHCARD
                         // Se obtiene la carta ubicada en la posicion dada por el usuario (inicia en la pos 0)
-                        getDatosMazo().nthCard();
+                        //getDatosMazo().nthCard();
                         break;
                 case 5: // FINDTOTALCARDS
                         // Se obtiene la cantidad total de cartas que se necesitan a partir de una carta muestra
@@ -460,7 +460,7 @@ public class Menu_20885272_RiveraRodriguez {
             int opcion = in.nextInt();
             switch (opcion) {
                 case 1: // MUESTRA LISTA DE JUGADORES
-                        getDatosJuego().listaJugadores();
+                        //getDatosJuego().listaJugadores();
                         break;
                 case 2: // MUESTRA ORDEN DE LOS TURNOS
                         getDatosJuego().turnos();

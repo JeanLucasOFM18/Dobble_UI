@@ -23,19 +23,19 @@ public interface IDobble_20885272_RiveraRodriguez {
 
     void lastCards();
 
-    void mostrarMazo();
+    List<String> mostrarMazo(int i);
 
     boolean dobbleGame();
 
     int numCards();
 
-    void nthCard();
+    List<String> nthCard(int posicion);
 
     int findTotalCards(int posicion);
 
     void requiredElements();
 
-    void missingCards();
+    List<List> missingCards();
 
     int comparaCartas(List<String> sublista, List<String> sublista2);
 

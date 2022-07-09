@@ -63,6 +63,13 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
     private JTextField fieldPosition;
     private JButton botonAccion26;
     private JButton botonAccion27;
+    private JButton botonAccion28;
+    private DefaultListModel lDefault;
+    private JList lista;
+    private JLabel labelQuestion8;
+    private JButton botonAccion29;
+    private JButton botonAccion30;
+    private JButton botonAccion31;
 
 
     public Dobble_20885272_RiveraRodriguez getDatosMazo() {
@@ -281,6 +288,10 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
         panelDatosJuego.add(botonAccion23);
         panelDatosJuego.add(botonAccion24);
         panelDatosJuego.add(botonAccion25);
+
+        botonAccion23.addActionListener(this);
+        botonAccion24.addActionListener(this);
+        botonAccion25.addActionListener(this);
     }
 
     private void panelUsoExtra(){
@@ -290,20 +301,48 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
         panelExtra.setBackground(Color.YELLOW);
 
         labelQuestion7 = new JLabel( "Ingrese la posicion de la carta de muestra");
+        labelQuestion8 = new JLabel("Ingrese la posicion de la carta que quiere ver");
         fieldPosition = new JTextField(5);
         botonAccion26 = new JButton("OK");
         botonAccion27 = new JButton("OK");
+        botonAccion28 = new JButton("OK");
+        botonAccion29 = new JButton("OK");
+        botonAccion30 = new JButton("OK");
+        botonAccion31 = new JButton("OK");
+        lDefault = new DefaultListModel();
+        lista = new JList();
+        lista.setModel(lDefault);
 
         panelExtra.add(labelQuestion7);
+        panelExtra.add(labelQuestion8);
         panelExtra.add(fieldPosition);
         panelExtra.add(botonAccion26);
         botonAccion26.setVisible(false);
         panelExtra.add(botonAccion27);
         botonAccion27.setVisible(false);
+        panelExtra.add(lista);
+        lista.setVisible(false);
+        panelExtra.add(botonAccion28);
+        botonAccion28.setVisible(false);
+        panelExtra.add(botonAccion29);
+        botonAccion29.setVisible(false);
+        panelExtra.add(botonAccion30);
+        botonAccion30.setVisible(false);
+        panelExtra.add(botonAccion31);
+        botonAccion31.setVisible(false);
 
         botonAccion26.addActionListener(this);
         botonAccion27.addActionListener(this);
+        botonAccion28.addActionListener(this);
+        botonAccion29.addActionListener(this);
+        botonAccion30.addActionListener(this);
+        botonAccion31.addActionListener(this);
     }
+
+    private void panelOpcion4(){
+
+    }
+    
     @Override
     public void actionPerformed(ActionEvent evento) {
         try {
@@ -459,7 +498,20 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                 panelDatos.setVisible(false);
                 panelPrincipal.setVisible(true);
             } else if(evento.getSource() == botonAccion14){
-
+                panelDatosMazo.setVisible(false);
+                panelExtra.setVisible(true);
+                labelQuestion7.setVisible(false);
+                labelQuestion8.setVisible(false);
+                fieldPosition.setVisible(false);
+                int i = 0;
+                int largo = getDatosMazo().getMazo().size();
+                while(i < largo){
+                    List<String> sublista = getDatosMazo().mostrarMazo(i);
+                    lDefault.addElement(sublista);
+                    i = i + 1;
+                }
+                lista.setVisible(true);
+                botonAccion28.setVisible(true);
             } else if(evento.getSource() == botonAccion15){
                 if(getDatosMazo().dobbleGame()){
                     String message = "El set de cartas es válido para jugar";
@@ -474,7 +526,12 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                 String message = "El set contiene " + cantCartas + " cartas";
                 JOptionPane.showMessageDialog(this, message);
             } else if(evento.getSource() == botonAccion17){
-
+                panelDatosMazo.setVisible(false);
+                panelExtra.setVisible(true);
+                labelQuestion7.setVisible(false);
+                labelQuestion8.setVisible(true);
+                fieldPosition.setVisible(true);
+                botonAccion29.setVisible(true);
             } else if(evento.getSource() == botonAccion18){
                 panelDatosMazo.setVisible(false);
                 panelExtra.setVisible(true);
@@ -484,18 +541,78 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                 panelExtra.setVisible(true);
                 botonAccion27.setVisible(true);
             } else if(evento.getSource() == botonAccion20){
-
+                panelDatosMazo.setVisible(false);
+                panelExtra.setVisible(true);
+                List<List> cartasFaltantes = getDatosMazo().missingCards();
+                int largo = cartasFaltantes.size();
+                int i = 0;
+                while (i < largo){
+                    lDefault.addElement(cartasFaltantes.get(i));
+                    i = i + 1;
+                }
+                lista.setVisible(true);
+                botonAccion28.setVisible(true);
             } else if(evento.getSource() == botonAccion21){
-
+                panelDatosMazo.setVisible(false);
+                panelExtra.setVisible(true);
+                labelQuestion7.setVisible(false);
+                labelQuestion8.setVisible(false);
+                fieldPosition.setVisible(false);
+                int i = 0;
+                int j = 1;
+                int largo = getDatosMazo().getMazo().size();
+                while(i < largo){
+                    List<String> sublista = getDatosMazo().mostrarMazo(i);
+                    lDefault.addElement("Carta " + j + ": " + sublista);
+                    i = i + 1;
+                    j = j + 1;
+                }
+                lista.setVisible(true);
+                botonAccion31.setVisible(true);
             } else if(evento.getSource() == botonAccion22){
                 panelDatosMazo.setVisible(false);
                 panelDatos.setVisible(true);
             } else if(evento.getSource() == botonAccion23){
-
+                if(getDatosJuego().getJugadores().size() == 0){
+                    String message = "No hay jugadores registrados";
+                    JOptionPane.showMessageDialog(this, message);
+                }
+                else{
+                    panelDatosJuego.setVisible(false);
+                    panelExtra.setVisible(true);
+                    int i = 0;
+                    int largo = getDatosJuego().getJugadores().size();
+                    while(i < largo){
+                        String nombre = getDatosJuego().listaJugadores(i);
+                        lDefault.addElement(nombre);
+                        i = i + 1;
+                    }
+                    lista.setVisible(true);
+                    botonAccion28.setVisible(true);
+                }
             } else if(evento.getSource() == botonAccion24){
-
+                if(getDatosJuego().getJugadores().size() == 0){
+                    String message = "No hay jugadores registrados";
+                    JOptionPane.showMessageDialog(this, message);
+                }
+                else{
+                    panelDatosJuego.setVisible(false);
+                    panelExtra.setVisible(true);
+                    int i = 0;
+                    int j = 1;
+                    int largo = getDatosJuego().getJugadores().size();
+                    while(i < largo){
+                        String nombre = j + ". " + getDatosJuego().listaJugadores(i);
+                        lDefault.addElement(nombre);
+                        i = i + 1;
+                        j = j + 1;
+                    }
+                    lista.setVisible(true);
+                    botonAccion28.setVisible(true);
+                }
             } else if(evento.getSource() == botonAccion25){
-
+                panelDatosJuego.setVisible(false);
+                panelDatos.setVisible(true);
             } else if(evento.getSource() == botonAccion26){
                 int posicion = Integer.parseInt(fieldPosition.getText());
                 int totalCartas = getDatosMazo().findTotalCards(posicion);
@@ -528,6 +645,45 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(this, message);
                     fieldPosition.setText("");
                 }
+            } else if (evento.getSource() == botonAccion28){
+                botonAccion28.setVisible(false);
+                labelQuestion7.setVisible(true);
+                fieldPosition.setVisible(true);
+                lDefault.removeAllElements();
+                panelExtra.setVisible(false);
+                panelDatosMazo.setVisible(true);
+            } else if (evento.getSource() == botonAccion29){
+                int posicion = Integer.parseInt(fieldPosition.getText());
+                if(posicion > getDatosMazo().getMaxC() - 1){
+                    fieldPosition.setText("");
+                    String message = "No existe una carta en esta posición";
+                    JOptionPane.showMessageDialog(this, message);
+                }
+                else{
+                    labelQuestion8.setVisible(false);
+                    fieldPosition.setVisible(false);
+                    botonAccion29.setVisible(false);
+                    List<String> sublista = getDatosMazo().nthCard(posicion);
+                    lDefault.addElement(sublista);
+                    lista.setVisible(true);
+                    botonAccion30.setVisible(true);
+                }
+            } else if (evento.getSource() == botonAccion30){
+                lista.setVisible(false);
+                botonAccion30.setVisible(false);
+                lDefault.removeAllElements();
+                labelQuestion7.setVisible(true);
+                labelQuestion8.setVisible(true);
+                fieldPosition.setVisible(true);
+                panelExtra.setVisible(false);
+                panelDatosMazo.setVisible(true);
+            } else if (evento.getSource() == botonAccion31){
+                botonAccion31.setVisible(false);
+                labelQuestion7.setVisible(true);
+                fieldPosition.setVisible(true);
+                lDefault.removeAllElements();
+                panelExtra.setVisible(false);
+                panelDatosMazo.setVisible(true);
             }
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, "Error!");
