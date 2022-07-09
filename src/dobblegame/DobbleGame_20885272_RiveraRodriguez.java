@@ -251,54 +251,58 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
     /**
      * Muestra cuál es el estado actual del juego
      */
-    public void status(){
+    public String status(){
 
-        System.out.println("El estado del juego es: " + getEstado());
+        //System.out.println("El estado del juego es: " + getEstado());
+        return getEstado();
     }
 
     /**
      * Muestra el puntaje de un jugador
      */
-    public void score(){
+    public int score(String nombre){
 
-        Scanner in = new Scanner(System.in);
         int i = 0;
         int largo = getJugadores().size();
-        System.out.println("Ingrese el nombre del jugador:");
-        String nombre = in.nextLine();
 
         while(i < largo){
             if(getJugadores().get(i).getNombre().equals(nombre)){
-                System.out.println("El puntaje de " + getJugadores().get(i).getNombre() + " es: " + getJugadores().get(i).getPuntaje());
-                i = largo + 1;
+                return i;
+                //System.out.println("El puntaje de " + getJugadores().get(i).getNombre() + " es: " + getJugadores().get(i).getPuntaje());
             }
             else{
                 i = i + 1;
             }
         }
 
-        if(i == largo){
+        return largo;
+        /*if(i == largo){
+            return largo;
             System.out.println("Este jugador no existe en los registros");
-        }
+        }*/
 
     }
 
     /**
      * Muestra a quien le corresponde el turno actual de jugar
      */
-    public void whoseTurnIsIt() {
+    public String whoseTurnIsIt() {
 
         int i = 0;
+        int j = 0;
         int largo = getJugadores().size();
         while (i < largo) {
             if (i == getTurno()) {
-                System.out.println("El turno es de: " + getJugadores().get(i).getNombre());
+                j = i;
+                //System.out.println("El turno es de: " + getJugadores().get(i).getNombre());
                 i = largo;
             }
             else {
                 i = i + 1;
             }
         }
+
+        return getJugadores().get(j).getNombre();
     }
 
     /**

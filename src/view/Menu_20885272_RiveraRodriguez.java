@@ -335,7 +335,7 @@ public class Menu_20885272_RiveraRodriguez {
                         break;
                 case 3: // SCORE
                         // Obtiene el puntaje de un jugador
-                        getDatosJuego().score();
+                        //getDatosJuego().score();
                         break;
                 case 4: // PASAR TURNO
                         if(j == 1){

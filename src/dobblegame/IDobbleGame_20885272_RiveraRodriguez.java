@@ -15,11 +15,11 @@ public interface IDobbleGame_20885272_RiveraRodriguez {
 
     void turnos();
 
-    void status();
+    String status();
 
-    void score();
+    int score(String nombre);
 
-    void whoseTurnIsIt();
+    String whoseTurnIsIt();
 
     void voltearCartas();
 
