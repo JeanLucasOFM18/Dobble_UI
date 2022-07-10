@@ -1,5 +1,7 @@
 package dobblegame;
 
+import java.util.List;
+
 /**
  * Interfaz de DobbleGame, las explicaciones de los métodos empleados se ubican en su implementación
  * @version 11.0.2
@@ -11,21 +13,21 @@ public interface IDobbleGame_20885272_RiveraRodriguez {
 
     int comprobarDatos();
 
-    String listaJugadores(int i);
+    String listaJugadores();
 
-    void turnos();
+    String turnos();
 
     String status();
 
-    int score(String nombre);
+    String score(String nombre);
 
     String whoseTurnIsIt();
 
-    void voltearCartas();
+    String voltearCartas();
 
     void passTurn();
 
-    int senalarIgualdad();
+    int senalarIgualdad(String coincidencia, String nombre);
 
     int validarCoincidencia(String coincidencia);
 
@@ -35,13 +37,13 @@ public interface IDobbleGame_20885272_RiveraRodriguez {
 
     void devolverAlMazo();
 
-    void endGame();
+    String endGame();
 
-    void play(int modo);
+    int play(int modo, String coincidencia, String nombre);
 
-    int vsCPUMode();
+    List<String> vsCPUMode();
 
-    void gameToString();
+    String gameToString();
 
     String toString();
 

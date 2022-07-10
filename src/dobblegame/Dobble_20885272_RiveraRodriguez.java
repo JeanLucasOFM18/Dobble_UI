@@ -110,47 +110,6 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Crea una lista de elementos a medida que el usuario los va ingresando (List<String>)
      */
-    /*
-    public void generarLista(){
-
-        System.out.println("Recuerde no ingresar elementos repetidos");
-        Scanner in = new Scanner(System.in);
-        List<String> lis_elementos = getLis_elementos();
-
-        int i = 0;
-        int j = 0;
-        int aux = 0;
-        while(i < getCantElementos()){
-            System.out.println("Ingrese el " + (i + 1) + " elemento: ");
-            String elemento = in.nextLine();
-            int largo = getLis_elementos().size();
-            while(j < largo){
-                String elemento2 = getLis_elementos().get(j);
-                if(elemento.equals(elemento2)){
-                    aux = 1;
-                    j = largo;
-                }
-                else{
-                    j = j + 1;
-                }
-            }
-            if(aux == 1){
-                System.out.println("El elemento es repetido");
-                j = 0;
-                aux = 0;
-            }
-            else{
-                lis_elementos.add(elemento);
-                setLis_elementos(lis_elementos);
-                i = i + 1;
-                j = 0;
-            }
-        }
-
-        Collections.shuffle(getLis_elementos());
-        System.out.println("Su lista de elementos aleatorizada es: " + getLis_elementos());
-    }*/
-
     public void generarLista(String elementos){
 
         String[] elementosUsuario = elementos.split(",");
@@ -188,8 +147,6 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
 
         Collections.shuffle(getLis_elementos());
         System.out.println("Su lista de elementos aleatorizada es: " + getLis_elementos());
-
-
     }
 
     /**
@@ -351,7 +308,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Muestra el mazo generado
      */
-    public List<String> mostrarMazo(int i) {
+    public String mostrarMazo() {
 
         /*
         int i = 0;
@@ -371,10 +328,19 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
             i = i + 1;
         }*/
 
-        List<String> sublista = getMazo().get(i).getCarta();
+        int i = 0;
+        int largo = getMazo().size();
+        String mazo = "El mazo es: \n";
 
-        return sublista;
+        while (i < largo){
+            mazo = mazo + getMazo().get(i).getCarta() + "\n";
+            i = i + 1;
+        }
 
+        //List<String> sublista = getMazo().get(i).getCarta();
+        //return sublista;
+
+        return mazo;
     }
 
     /**
@@ -430,7 +396,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Obtiene la carta ubicada en la posición que indica el usuario, siempre y cuando esta posición exista
      */
-    public List<String> nthCard(int posicion){
+    public String nthCard(int posicion){
 
         /*
         Scanner in = new Scanner(System.in);
@@ -444,9 +410,9 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
             System.out.println("La carta escogida es: " + getMazo().get(posicion).getCarta());
         }*/
 
-        List<String> sublista = getMazo().get(posicion).getCarta();
+        String carta = "La carta ubicada en la posicion " + posicion + " es: \n" + getMazo().get(posicion).getCarta().toString();
 
-        return sublista;
+        return carta;
 
     }
 
@@ -477,13 +443,21 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
      * Obtiene la cantidad necesaria de elementos que se debe tener para poder tener un set válido,
      * todo esto a partir de una carta de muestra
      */
-    public void requiredElements(){
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Que carta quiere usar de muestra?");
-        int posicion = in.nextInt();
+    public int requiredElements(int posicion){
 
         if(posicion > getMaxC() - 1){
+            return 0;
+            //System.out.println("No existe la carta " + posicion + " en su mazo");
+        }
+        else{
+            List<String> sublista = getMazo().get(posicion).getCarta();
+            int largo = sublista.size();
+            int total = calculo(largo);
+            return total;
+            //System.out.println("La cantidad de cartas necesarias son: " + total);
+        }
+
+        /*if(posicion > getMaxC() - 1){
             System.out.println("No existe la carta " + posicion + " en  su mazo");
         }
         else{
@@ -491,21 +465,21 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
             int largo = sublista.size();
             int total = calculo(largo);
             System.out.println("La cantidad de elementos necesarios son: " + total);
-        }
+        }*/
     }
 
     /**
      * Obtiene las cartas (Card) que hacen falta para poder tener un set válido
      */
-    public List<List> missingCards(){
+    public String missingCards(){
 
-        List<List> faltantes = new ArrayList<>();
+        String faltantes = "";
         int maxC = calculo(getNumC());
         if(getMazo().size() == maxC){
-            System.out.println("El set de cartas esta completo");
+            faltantes = "El set de cartas esta completo";
         }
         else{
-            System.out.println("Las cartas faltantes son:");
+            faltantes = "Las cartas faltantes para generar un set completo son: \n";
             List<Card_20885272_RiveraRodriguez> setUsuario = getMazo();
             Dobble_20885272_RiveraRodriguez mazoEntero = new Dobble_20885272_RiveraRodriguez();
             mazoEntero.setMaxC(maxC);
@@ -532,7 +506,7 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
                     }
                 }
                 if(comparacion == 0){
-                    faltantes.add(mazoEntero.getMazo().get(i).getCarta());
+                    faltantes = faltantes + mazoEntero.getMazo().get(i).getCarta() + "\n";
                     System.out.println(mazoEntero.getMazo().get(i).getCarta());
                 }
                 j = 0;
@@ -546,17 +520,30 @@ public class Dobble_20885272_RiveraRodriguez implements IDobble_20885272_RiveraR
     /**
      * Obtiene una representación en base string del set de cartas
      */
-    public void cardsSetToString(){
+    public String cardsSetToString(){
 
+        String cartas = "El mazo es: \n";
         int i = 0;
+        int k = 0;
         int j = 1;
         int largo = getMazo().size();
         while(i < largo){
-            List<String> sublista = getMazo().get(i).getCarta();
-            System.out.println("Carta " + j + ": " + sublista);
+            cartas = cartas + "Carta " + j + ": ";
+            while(k < getNumC()){
+                if(k != getNumC() - 1){
+                    cartas = cartas + getMazo().get(i).getCarta().get(k) + ", ";
+                }
+                else {
+                    cartas = cartas + getMazo().get(i).getCarta().get(k) + "\n";
+                }
+                k = k + 1;
+            }
             i = i + 1;
             j = j + 1;
+            k = 0;
         }
+
+        return cartas;
     }
 
     /**
