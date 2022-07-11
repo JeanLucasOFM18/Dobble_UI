@@ -1,4 +1,4 @@
-package dobblegame;
+package model;
 
 import java.util.List;
 import java.util.Objects;
@@ -43,6 +43,10 @@ public class Card_20885272_RiveraRodriguez implements ICard_20885272_RiveraRodri
                 '}';
     }
 
+    /**
+     * Verifica si dos objetos son iguales
+     * @return True si son iguales, de lo contrario false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

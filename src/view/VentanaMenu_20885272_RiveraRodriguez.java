@@ -6,9 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import dobblegame.*;
+import model.*;
 
-public class VentanaMenuPrincipal extends JFrame implements ActionListener{
+/**
+ * Clase de la interfaz gráfica, que permite la interacción con el usuario
+ * @version 11.0.2
+ * @autor: Jean Lucas Rivera
+ */
+public class VentanaMenu_20885272_RiveraRodriguez extends JFrame implements ActionListener{
 
     private Dobble_20885272_RiveraRodriguez datosMazo;
     private DobbleGame_20885272_RiveraRodriguez datosJuego;
@@ -21,7 +26,6 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
     private JButton botonAccion2;
     private JButton botonAccion3;
     private JButton botonAccion4;
-    private JButton botonAccion5;
     private JButton botonAccion6;
     private JButton botonAccion7;
     private JButton botonAccion8;
@@ -42,22 +46,37 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
     private JButton botonAccion23;
     private JButton botonAccion24;
 
+    /**
+     * Método que obtiene el objeto Dobble
+     */
     public Dobble_20885272_RiveraRodriguez getDatosMazo() {
         return datosMazo;
     }
+
+    /**
+     * Método que modifica el objeto Dobble
+     */
     public void setDatosMazo(Dobble_20885272_RiveraRodriguez datosMazo) {
         this.datosMazo = datosMazo;
     }
+
+    /**
+     * Método que obtiene el objeto DobbleGame
+     */
     public DobbleGame_20885272_RiveraRodriguez getDatosJuego() {
         return datosJuego;
     }
+
+    /**
+     * Método que modifica el objeto Dobble
+     */
     public void setDatosJuego(DobbleGame_20885272_RiveraRodriguez datosJuego) {
         this.datosJuego = datosJuego;
     }
 
-    public VentanaMenuPrincipal() {
+    public VentanaMenu_20885272_RiveraRodriguez() {
         super("Menú Principal");
-        setSize(240, 280);
+        setSize(300, 380);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         panelMenuPrincipal();
@@ -77,50 +96,91 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
         this.datosJuego = new DobbleGame_20885272_RiveraRodriguez();
     }
 
+    /**
+     * JPanel que representa al menu principal, el cual se agrega al Frame
+     */
     private void panelMenuPrincipal(){
 
-        panelPrincipal = new JPanel(new FlowLayout());
-        panelPrincipal.setBounds(0, 0, 230, 280);
+        panelPrincipal = new JPanel(null);
+        panelPrincipal.setBounds(0, 0, 300, 380);
         panelPrincipal.setBackground(Color.YELLOW);
 
+        JLabel labelTitulo1 = new JLabel("DOBBLE");
+        labelTitulo1.setFont(new Font("impact",Font.BOLD,40));
+        labelTitulo1.setBounds(20,0, 320, 80);
+        labelTitulo1.setLocation(90,0);
         botonAccion = new JButton("CREAR JUEGO");
+        botonAccion.setBounds(20,70,200,20);
+        botonAccion.setLocation(50,70);
         botonAccion2 = new JButton("REGISTRAR JUGADOR");
+        botonAccion2.setBounds(20,100,200,20);
+        botonAccion2.setLocation(50,100);
         botonAccion3 = new JButton("DATOS DEL JUEGO");
+        botonAccion3.setBounds(20,130,200,20);
+        botonAccion3.setLocation(50,130);
         botonAccion4 = new JButton("JUGAR");
-        botonAccion5 = new JButton("PROBAR FUNCIÓN TOSTRING");
+        botonAccion4.setBounds(20,160,200,20);
+        botonAccion4.setLocation(50,160);
         botonAccion6 = new JButton("SALIR");
+        botonAccion6.setBounds(20,190,200,20);
+        botonAccion6.setLocation(50,190);
 
+        panelPrincipal.add(labelTitulo1);
         panelPrincipal.add(botonAccion);
         panelPrincipal.add(botonAccion2);
         panelPrincipal.add(botonAccion3);
         panelPrincipal.add(botonAccion4);
-        panelPrincipal.add(botonAccion5);
         panelPrincipal.add(botonAccion6);
 
         botonAccion.addActionListener(this);
         botonAccion2.addActionListener(this);
         botonAccion3.addActionListener(this);
         botonAccion4.addActionListener(this);
-        botonAccion5.addActionListener(this);
         botonAccion6.addActionListener(this);
     }
 
+    /**
+     * JPanel que representa a los datos del Mazo, el cual se agrega al Frame
+     */
     private void panelOpcionMazo(){
 
-        panelDatosMazo = new JPanel(new FlowLayout());
-        panelDatosMazo.setBounds(0, 0, 235, 280);
+        panelDatosMazo = new JPanel(null);
+        panelDatosMazo.setBounds(0, 0, 300, 380);
         panelDatosMazo.setBackground(Color.YELLOW);
 
+        JLabel labelTitulo2 = new JLabel("DATOS MAZO");
+        labelTitulo2.setFont(new Font("impact",Font.BOLD,40));
+        labelTitulo2.setBounds(20,0, 320, 80);
+        labelTitulo2.setLocation(50,0);
         botonAccion7 = new JButton("MOSTRAR MAZO");
+        botonAccion7.setBounds(20,70,230,20);
+        botonAccion7.setLocation(30,70);
         botonAccion8 = new JButton("VERIFICAR MAZO");
+        botonAccion8.setBounds(20,100,230,20);
+        botonAccion8.setLocation(30,100);
         botonAccion9 = new JButton("CANTIDAD DE CARTAS");
+        botonAccion9.setBounds(20,130,230,20);
+        botonAccion9.setLocation(30,130);
         botonAccion10 = new JButton("OBTENER CARTA");
+        botonAccion10.setBounds(20,160,230,20);
+        botonAccion10.setLocation(30,160);
         botonAccion11 = new JButton("CANT. NECESARIA CARTAS");
+        botonAccion11.setBounds(20,190,230,20);
+        botonAccion11.setLocation(30,190);
         botonAccion12 = new JButton("CANT. NECESARIA ELEMENTOS");
+        botonAccion12.setBounds(20,220,230,20);
+        botonAccion12.setLocation(30,220);
         botonAccion13 = new JButton("CARTAS FALTANTES");
+        botonAccion13.setBounds(20,250,230,20);
+        botonAccion13.setLocation(30,250);
         botonAccion14 = new JButton("MAZO A STRING");
+        botonAccion14.setBounds(20,280,230,20);
+        botonAccion14.setLocation(30,280);
         botonAccion15 = new JButton("VOLVER ATRAS");
+        botonAccion15.setBounds(20,310,230,20);
+        botonAccion15.setLocation(30,310);
 
+        panelDatosMazo.add(labelTitulo2);
         panelDatosMazo.add(botonAccion7);
         panelDatosMazo.add(botonAccion8);
         panelDatosMazo.add(botonAccion9);
@@ -143,16 +203,30 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * JPanel que representa a los datos del Juego, el cual se agrega al Frame
+     */
     private void panelOpcionJuego(){
 
-        panelDatosJuego = new JPanel(new FlowLayout());
-        panelDatosJuego.setBounds(0, 0, 220, 280);
+        panelDatosJuego = new JPanel(null);
+        panelDatosJuego.setBounds(0, 0, 300, 380);
         panelDatosJuego.setBackground(Color.YELLOW);
 
+        JLabel labelTitulo3 = new JLabel("DATOS JUEGO");
+        labelTitulo3.setFont(new Font("impact",Font.BOLD,40));
+        labelTitulo3.setBounds(20,0, 320, 80);
+        labelTitulo3.setLocation(40,0);
         botonAccion16 = new JButton("LISTA DE JUGADORES");
+        botonAccion16.setBounds(20,70,200,20);
+        botonAccion16.setLocation(50,70);
         botonAccion17 = new JButton("ORDEN DE LOS TURNOS");
+        botonAccion17.setBounds(20,100,200,20);
+        botonAccion17.setLocation(50,100);
         botonAccion18 = new JButton("VOLVER ATRAS");
+        botonAccion18.setBounds(20,130,200,20);
+        botonAccion18.setLocation(50,130);
 
+        panelDatosJuego.add(labelTitulo3);
         panelDatosJuego.add(botonAccion16);
         panelDatosJuego.add(botonAccion17);
         panelDatosJuego.add(botonAccion18);
@@ -162,19 +236,39 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
         botonAccion18.addActionListener(this);
     }
 
+    /**
+     * JPanel que representa al Juego, el cual se agrega al Frame
+     */
     private void panelJugar(){
 
-        panelJuego = new JPanel(new FlowLayout());
+        panelJuego = new JPanel(null);
         panelJuego.setBounds(0,0,220,280);
         panelJuego.setBackground(Color.YELLOW);
 
-        botonAccion19 = new JButton("Estado del Juego");
-        botonAccion20 = new JButton("Consultar turno");
-        botonAccion21 = new JButton("Consultar puntaje");
-        botonAccion22 = new JButton("Jugar");
-        botonAccion23 = new JButton("Juego a String");
-        botonAccion24 = new JButton("Finalizar Juego");
+        JLabel labelTitulo4 = new JLabel("JUEGO");
+        labelTitulo4.setFont(new Font("impact",Font.BOLD,40));
+        labelTitulo4.setBounds(20,0, 320, 80);
+        labelTitulo4.setLocation(100,0);
+        botonAccion19 = new JButton("ESTADO DEL JUEGO");
+        botonAccion19.setBounds(20,70,200,20);
+        botonAccion19.setLocation(50,70);
+        botonAccion20 = new JButton("CONSULTAR TURNO");
+        botonAccion20.setBounds(20,100,200,20);
+        botonAccion20.setLocation(50,100);
+        botonAccion21 = new JButton("CONSULTAR PUNTAJE");
+        botonAccion21.setBounds(20,130,200,20);
+        botonAccion21.setLocation(50,130);
+        botonAccion22 = new JButton("JUGAR");
+        botonAccion22.setBounds(20,160,200,20);
+        botonAccion22.setLocation(50,160);
+        botonAccion23 = new JButton("JUEGO A STRING");
+        botonAccion23.setBounds(20,190,200,20);
+        botonAccion23.setLocation(50,190);
+        botonAccion24 = new JButton("FINALIZAR JUEGO");
+        botonAccion24.setBounds(20,220,200,20);
+        botonAccion24.setLocation(50,220);
 
+        panelJuego.add(labelTitulo4);
         panelJuego.add(botonAccion19);
         panelJuego.add(botonAccion20);
         panelJuego.add(botonAccion21);
@@ -191,6 +285,9 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * Se determina las instrucciones a seguir dependiendo de la acción ejercida por el usuario
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         try {
@@ -329,15 +426,6 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                         JOptionPane.showMessageDialog(this, message);
                     }
                 }
-            } else if (evento.getSource() == botonAccion5) {
-                String message;
-                if(habilitador == 0){
-                    message = "Debe crear el juego para acceder a esta funcion";
-                }
-                else {
-                    message = "Hola, esta es funcion tostring";
-                }
-                JOptionPane.showMessageDialog(this, message);
             } else if (evento.getSource() == botonAccion6) {
                 dispose();
             } else if (evento.getSource() == botonAccion7) {
@@ -385,7 +473,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener{
                 }
                 else{
                     int totalElementos = getDatosMazo().requiredElements(posicion);
-                    String message = "Se necesitan " + totalElementos + " cartas para tener un set válido";
+                    String message = "Se necesitan " + totalElementos + " elementos para tener un set válido";
                     JOptionPane.showMessageDialog(this, message);
                 }
             } else if(evento.getSource() == botonAccion13){

@@ -1,4 +1,4 @@
-package dobblegame;
+package model;
 
 import java.util.List;
 

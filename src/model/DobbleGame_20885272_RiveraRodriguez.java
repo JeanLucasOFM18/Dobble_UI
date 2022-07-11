@@ -1,7 +1,6 @@
-package dobblegame;
+package model;
 
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -128,6 +127,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Registra un nuevo jugador y lo agrega a la lista de jugadores existente
+     * @return True si el registro fue exitoso, de lo contrario False
      */
     public boolean register(String nombre){
 
@@ -142,35 +142,26 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
             List<Player_20885272_RiveraRodriguez> listaJugadores2 = getJugadores();
             listaJugadores2.add(jugador2);
             setJugadores(listaJugadores2);
-            System.out.println("Registro exitoso");
             setNumP(2);
             return true;
         }
         else{
-            int k = 0;
-            if(largo < getNumP() && k == 0){
+            if(largo < getNumP()){
                 int i = 0;
-                int j = 0;
                 while(i < largo){
                     String nombre2 = getJugadores().get(i).getNombre();
                     if(nombre.equals(nombre2)){
-                        System.out.println("Ya existe un jugador con ese nombre");
-                        i = largo;
-                        j = 1;
                         return false;
                     }
                     else{
                         i = i + 1;
                     }
                 }
-                if(j == 0){
-                    Player_20885272_RiveraRodriguez jugador = new Player_20885272_RiveraRodriguez(nombre, 0);
-                    List<Player_20885272_RiveraRodriguez> listaJugadores = getJugadores();
-                    listaJugadores.add(jugador);
-                    setJugadores(listaJugadores);
-                    System.out.println("Registro exitoso");
-                    return true;
-                }
+                Player_20885272_RiveraRodriguez jugador = new Player_20885272_RiveraRodriguez(nombre, 0);
+                List<Player_20885272_RiveraRodriguez> listaJugadores = getJugadores();
+                listaJugadores.add(jugador);
+                setJugadores(listaJugadores);
+                return true;
             }
         }
 
@@ -179,6 +170,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Comprueba si se puede iniciar el juego con la cantidad de jugadores registrados y el mazo
+     * @return Integer que simboliza si se puede jugar con el mazo actual
      */
     public int comprobarDatos(){
 
@@ -201,24 +193,9 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Se muestra la lista de jugadores registrados
+     * @return String con los nombres de los jugadores
      */
     public String listaJugadores(){
-
-        /*int i = 0;
-        int j = 1;
-        int largo = getJugadores().size();
-
-        if(largo == 0){
-            System.out.println("No hay jugadores registrados");
-        }
-
-        else{
-            while(i < largo){
-                System.out.println("Jugador " + j + ": " + getJugadores().get(i).getNombre());
-                i = i + 1;
-                j = j + 1;
-            }
-        }*/
 
         String jugadores = "Los jugadores registrados son: \n";
         int largo = getJugadores().size();
@@ -233,6 +210,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Muestra el orden de los turnos del juego
+     * @return String con el orden de los turnos del juego
      */
     public String turnos(){
 
@@ -253,15 +231,16 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Muestra cuál es el estado actual del juego
+     * @return String con el estado del juego
      */
     public String status(){
 
-        //System.out.println("El estado del juego es: " + getEstado());
         return getEstado();
     }
 
     /**
      * Muestra el puntaje de un jugador
+     * @return String con el puntaje del jugador siempre y cuando exista
      */
     public String score(String nombre){
 
@@ -272,7 +251,6 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
         while(i < largo){
             if(getJugadores().get(i).getNombre().equals(nombre)){
                 jugador = "El puntaje de " + getJugadores().get(i).getNombre() + " es: " + getJugadores().get(i).getPuntaje();
-                //System.out.println("El puntaje de " + getJugadores().get(i).getNombre() + " es: " + getJugadores().get(i).getPuntaje());
                 i = largo;
             }
             else{
@@ -285,6 +263,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Muestra a quien le corresponde el turno actual de jugar
+     * @return String con el nombre del jugador al cual le pertenece el turno
      */
     public String whoseTurnIsIt() {
 
@@ -301,26 +280,23 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
             }
         }
 
-        String nombre = "El turno actual es de: " + getJugadores().get(j).getNombre();
-
-        return nombre;
+        return "El turno actual es de: " + getJugadores().get(j).getNombre();
     }
 
     /**
      * Obtiene las 2 cartas que se encuentran en la cima de la pila de cartas y las muestra al usuario
+     * @return con los datos de las 2 cartas volteadas
      */
     public String voltearCartas(){
 
-        String cartasVolteadas = "";
+        String cartasVolteadas = "Carta 1: ";
         int i = getMazo().getMazo().size() - 1;
         int j = i - 1;
 
-        cartasVolteadas = cartasVolteadas + getMazo().getMazo().get(i).getCarta();
-        cartasVolteadas = cartasVolteadas + getMazo().getMazo().get(j).getCarta();
+        cartasVolteadas = cartasVolteadas + getMazo().getMazo().get(i).getCarta() + " | Carta 2: ";
+        cartasVolteadas = cartasVolteadas + getMazo().getMazo().get(j).getCarta() + "\n";
 
         return cartasVolteadas;
-        //System.out.println("Carta 1: " + getMazo().getMazo().get(i).getCarta() + " | Carta 2: " + getMazo().getMazo().get(j).getCarta());
-
     }
 
     /**
@@ -344,6 +320,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Permite determinar si la igualdad indicada por el usuario es o no acertada
+     * @param coincidencia y nombre (Strings)
      * @return Integer Según se de alguna de las 3 opciones (Correcta, Incorrecta o Turno erróneo)
      */
     public int senalarIgualdad(String coincidencia, String nombre){
@@ -354,16 +331,13 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
         if(nombre.equals(nombreTurno)){
             comparacion = validarCoincidencia(coincidencia);
             if(comparacion == 0){
-                System.out.println("Coincidencia correcta");
                 return 0;
             }
             else{
-                System.out.println("Coincidencia incorrecta");
                 return 1;
             }
         }
         else{
-            System.out.println("No es el turno de " + nombre);
             return 2;
         }
     }
@@ -459,11 +433,17 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     }
 
+    /**
+     * Permite obtener una representación en base string del juego
+     * @return String con la representación del juego en base string
+     */
     public String gameToString(){
 
         String gameString;
 
-        gameString = "# ESTADO DEL JUEGO # \n";
+        gameString = "# MODO DE JUEGO # \nStackMode \n\n";
+
+        gameString = gameString + "# ESTADO DEL JUEGO # \n";
         gameString = gameString + getEstado() + "\n \n";
 
         int i = 0;
@@ -489,6 +469,7 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Finaliza el juego y muestra al jugador/es el resultado final
+     * @return String con los datos del juego finalizado (ganadores y puntajes)
      */
     public String endGame(){
 
@@ -516,11 +497,9 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
         if(contador != 1){
             gameFinish = "La partida terminó en empate \n \n";
-            System.out.println("La partida terminó en empate");
         }
         else{
             gameFinish = "El ganador es: " + getJugadores().get(posicion).getNombre() + "\n \n";
-            System.out.println("El ganador es: " + getJugadores().get(posicion).getNombre());
         }
 
         gameFinish = gameFinish + "# POSICIONES FINALES # \n";
@@ -546,42 +525,36 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
 
     /**
      * Permite realizar la acción de jugar
+     * @param modo, coincidencia y nombre (Strings)
+     * @return Integer que simboliza lo que ocurrió en el juego (coincidencia correcta, incorrecta, etc)
      */
     public int play(int modo, String coincidencia, String nombre){
 
-        int i = 0;
-        while(i == 0){
-            int resultado = senalarIgualdad(coincidencia, nombre);
-            if(resultado == 0){
-                System.out.println(getJugadores().get(getTurno()).getNombre() + " se lleva las 2 cartas volteadas");
-                sumaPuntaje();
-                passTurn();
-                eliminarCartas();
-                return 1;
-            }
-            else if(resultado == 1){
-                passTurn();
-                devolverAlMazo();
-                System.out.println("Cartas devueltas al mazo");
-                return 2;
-            }
-            else{
-                System.out.println("Vuelva a ingresar un nombre");
-                return 3;
-            }
+        int resultado = senalarIgualdad(coincidencia, nombre);
+        if(resultado == 0){
+            sumaPuntaje();
+            passTurn();
+            eliminarCartas();
+            return 1;
         }
-
-        return 0;
+        else if(resultado == 1){
+            passTurn();
+            devolverAlMazo();
+            return 2;
+        }
+        else{
+            return 3;
+        }
     }
 
     /**
      * Permite ejecutar un juego vs la CPU
-     * @return Integer Depende de si la coincidencia es correcta o no
+     * @return List<String> con los datos del movimiento ejecutado por la CPU
      */
     public List<String> vsCPUMode(){
 
-        String informacion = "";
-        String validacion = "";
+        String informacion;
+        String validacion;
         List<String> modeCPU = new ArrayList<>();
         Random aleatorio = new Random();
         int i = getMazo().getMazo().size() - 1;
@@ -590,12 +563,10 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
         int comparacion = validarCoincidencia(coincidencia);
         if(comparacion == 0){
             informacion = informacion + "Coincidencia correcta \n";
-            System.out.println("Coincidencia correcta");
             validacion = "0";
         }
         else{
             informacion = informacion + "Coincidencia incorrecta \n";
-            System.out.println("Coincidencia incorrecta");
             validacion = "1";
         }
 
@@ -606,7 +577,6 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
         while(i == 0){
             int resultado = Integer.parseInt(modeCPU.get(0));
             if(resultado == 0){
-                System.out.println(getJugadores().get(getTurno()).getNombre() + " se lleva las 2 cartas volteadas");
                 sumaPuntaje();
                 passTurn();
                 eliminarCartas();
@@ -615,7 +585,6 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
             else{
                 passTurn();
                 devolverAlMazo();
-                System.out.println("Cartas devueltas al mazo");
                 i = 1;
             }
         }
@@ -639,6 +608,10 @@ public class DobbleGame_20885272_RiveraRodriguez implements IDobbleGame_20885272
                 '}';
     }
 
+    /**
+     * Verifica si dos objetos son iguales
+     * @return True si son iguales, de lo contrario false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

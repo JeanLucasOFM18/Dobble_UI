@@ -1,4 +1,4 @@
-package dobblegame;
+package model;
 
 /**
  * Interfaz de Player, las explicaciones de los métodos empleados se ubican en su implementación

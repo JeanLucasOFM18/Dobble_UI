@@ -1,4 +1,4 @@
-package dobblegame;
+package model;
 
 import java.util.Objects;
 
@@ -61,6 +61,10 @@ public class Player_20885272_RiveraRodriguez implements IPlayer_20885272_RiveraR
                 '}';
     }
 
+    /**
+     * Verifica si dos objetos son iguales
+     * @return True si son iguales, de lo contrario false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
